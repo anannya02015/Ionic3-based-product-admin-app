@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ 'prod_images_spcify' | translate }}
+    </ion-title>
+    <ion-buttons end>
+      <!-- <button item-end ion-button  Solid  (click)="addProduct()" color="color4" round>{{ 'ADD_PRODUCT' | translate }}</button>  
+      -->
+       <button ion-button  (click)="close()">
+           <ion-icon name="close"></ion-icon>   
+         </button>
+</ion-buttons>  
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ 
+ 
+    
+     <ion-item>
+         <ion-label  > 
+          <b>   {{ 'chose_a_color_to_product' | translate }} </b>
+             
+           </ion-label>
+         </ion-item>
+         <ion-item>
+            
+   <input   type="color" id="myColor" [(ngModel)]="___domidoom__.colr" value="{{___domidoom__.colr}}" select="__ciuytffpp__($event)">
+ </ion-item>
+         <ion-item>
+             <ion-label > 
+                 <b>    {{ 'price_change_on_color' | translate }} </b>
+             </ion-label>
+           </ion-item>
+           <ion-item>
+         <ion-select [(ngModel)]="___domidoom__.change_in_price">
+           <ion-option value="increase">Increase </ion-option>                          
+           <ion-option value="decrease">Decrease </ion-option>
+           <ion-option value="default" >Default</ion-option>
+         </ion-select>
+       </ion-item>
+       
+       <ion-item>
+           <ion-label > 
+               <b>   {{ 'price_change_on_color_amount_percent' | translate }} </b>
+           </ion-label>
+         </ion-item>
+         <ion-item>
+       <ion-select [(ngModel)]="___domidoom__.amount_pecnt" >
+         <ion-option value="amount">By Amount</ion-option>
+         <ion-option value="percent">By Percent</ion-option>                        
+         <ion-option value="default"   >Default</ion-option>
+       </ion-select>
+     </ion-item>
+     <ion-item>
+        <ion-label  *ngIf="(___domidoom__.amount_pecnt == 'amount') || (___domidoom__.amount_pecnt == 'default') "><b>  {{ 'amount' | translate }} </b></ion-label> <ion-label  *ngIf="(___domidoom__.amount_pecnt == 'percent') " > % </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text"  [(ngModel)]="___domidoom__.price_increase"  ></ion-input>
+       
+      </ion-item>
+
+      <button ion-button color="ycBlue" (click)="_rang__EEEEE(___domidoom__)">
+          <ion-icon name="disc"> </ion-icon>   Save 
+        </button>
+
+
+
+
+<!--  Chosen name: {{ productForm.controls.items.controls[i].controls.colr.value }}  -->
+
+
+
+
+</ion-content>

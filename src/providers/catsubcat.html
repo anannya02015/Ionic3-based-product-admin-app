@@ -1,0 +1,70 @@
+
+
+
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>About</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+ 
+
+<ion-content padding>
+  
+
+  <form [formGroup]="catsubForm"  >
+      <button ion-button  block (click)="addcategory()" color="secondary" small >Add Category</button>
+      <button ion-button  *ngIf="cat_has_parent" block (click)="addsubcategory()" color="secondary" small>Add Sub Category</button>
+      
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <!-- && (loginForm.controls.name.dirty ) -->
+      <ion-input type="text" formControlName="name" [(ngModel)]="name" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!catsubForm.controls.name.valid && catsubForm.controls.name.dirty ">
+      <p>Please enter a valid name.</p>
+  </ion-item>
+  <ion-item>
+      <ion-label floating>Active</ion-label>
+      <ion-input type="text"  name="seller_active" formControlName="seller_active" [(ngModel)]="seller_active"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Description</ion-label>
+      <ion-textarea formControlName="desc" [(ngModel)]="desc"></ion-textarea>
+    </ion-item>
+  
+
+    <p *ngIf="submitAttempt" style="color: #EA7153;">Please fill out all details accurately.</p>
+    <button ion-button  block (click)="savecategory()" color="secondary" small >Save</button>
+  </form>
+</ion-content>
+
+    
+<ion-footer>
+    
+  
+            <div id="sample">
+  <script type="text/javascript" src="../nicEdit.js"></script>
+  <script type="text/javascript">
+    bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+  </script>
+  
+  <h4>First Textarea</h4>
+  <textarea name="area1" cols="40"></textarea>
+  <br />
+  
+  <h4>Second Textarea</h4>
+  <textarea name="area2" style="width: 100%;">
+    Some Initial Content was in this textarea
+  </textarea>
+  <br />
+  
+  <h4>Third Textarea</h4>
+  <textarea name="area3" style="width: 300px; height: 100px;">
+    HTML <b>content</b> <i>default</i> in textarea
+  </textarea>
+  </div>
+  </ion-footer>

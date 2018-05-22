@@ -1,0 +1,197 @@
+@font-face {
+  font-family: 'Humanst';
+  src: url('../assets/fonts/roboto-light.woff2') format('woff2'), url('../assets/fonts/roboto-light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'Humanst';
+}
+tree_view {
+
+    .menu-right ion-content,.menu-right .item-complex .item-content{
+        color:#000000;
+        background-color: #EF473A;
+        }
+    background-color: #BDBDBD;
+      .node-menu {
+        position: relative;
+        width: 150px;
+      }
+      
+      
+      .myBg{
+        background-color:#ddd;
+      }
+      tree-internal ul {
+        padding: 0px 0 3px 25px;
+        margin: 0px 0px 0px -15px;
+        font-family: "  sans-serif";
+        color:#ff00ff;
+        
+      }
+      
+      tree-internal li {
+        padding: 0;
+      
+        color:#ff00ff;
+        
+        list-style: none;
+      }
+      
+      tree-internal .over-drop-target {
+        border: 4px solid #757575;
+        transition: padding 0.2s ease-out;
+        padding: 5px;
+        border-radius: 5%;
+      }
+
+      
+      
+      
+      tree-internal .tree {
+        box-sizing: border-box;
+        text-align: left;
+        font-family: "Noto Sans";
+        font-style: normal;
+        font-weight: 300;
+     //   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 20px; color: white;
+        //font:"font-weight: bold; font-size: 50em; color: white;" ;
+      }
+      
+      tree-internal .tree li {
+        list-style: none;
+        cursor: default;
+         text-align: left;
+        font-family: $font-family-base;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 15px; color: rgb(39, 63, 173);
+      }
+      
+      tree-internal .tree li div {
+        display: inline-block;
+        box-sizing: border-box;
+        font-size: 20px; color: white;
+        
+      }
+      
+      tree-internal .tree .node-value {
+        display: inline-block;
+        color: color($colors, color4);;      }
+      
+      tree-internal .tree .node-value:after {
+        display: block;
+        padding-top: -3px;
+        width: 0;
+        height: 2px;
+        background-color: #212121;
+        content: '';
+        transition: width 0.3s;
+      }
+      
+      tree-internal .tree .node-value:hover:after {
+        width: 100%;
+      }
+      
+      tree-internal .tree .node-left-menu {
+        display: inline-block;
+        height: 100%;
+        width: auto;
+      }
+      
+      tree-internal .tree .node-left-menu span:before {
+        content: '\2026';
+        color: white;
+      }
+      
+      tree-internal .tree .node-selected:after {
+        width: 100%;
+      }
+      
+      tree-internal .tree .folding {
+        width: 25px;
+        display: inline-block;
+        line-height: 1px;
+        padding: 0 5px;
+        font-weight: bold;
+      }
+      
+      tree-internal .tree .folding.node-collapsed {
+        cursor: pointer;
+      }
+      
+      tree-internal .tree .folding.node-collapsed:before {
+        content: '\25B6';
+        color: #757575;
+      }
+      
+      tree-internal .tree .folding.node-expanded {
+        cursor: pointer;
+      }
+      
+      tree-internal .tree .folding.node-expanded:before {
+        content: '\25BC';
+        color: #757575;
+      }
+      
+      tree-internal .tree .folding.node-empty {
+        color: #212121;
+        text-align: center;
+        font-size: 0.89em;
+      }
+      
+      tree-internal .tree .folding.node-empty:before {
+        content: '\25B6';
+        color: #757575;
+      }
+      
+      tree-internal .tree .folding.node-leaf {
+        color: #212121;
+        text-align: left;
+        font-size: 0.89em;
+      }
+      
+      tree-internal .tree .folding.node-leaf:before {
+        content: '\25CF';
+        color: #757575;
+      }
+      
+      tree-internal ul.rootless {
+        padding: 0;
+      }
+      
+      tree-internal div.rootless {
+        display: none !important;
+      }
+      
+      tree-internal .loading-children:after {
+        content: ' loading ...';
+        color: #6a1b9a;
+        font-style: italic;
+        font-size: 0.9em;
+        animation-name: loading-children;
+        animation-duration: 2s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+      }
+      
+      @keyframes loading-children {
+        0%    { color: #f3e5f5; }
+        12.5% { color: #e1bee7; }
+        25%   { color: #ce93d8; }
+        37.5% { color: #ba68c8; }
+        50%   { color: #ab47bc; }
+        62.5% { color: #9c27b0; }
+        75%   { color: #8e24aa; }
+        87.5% { color: #7b1fa2; }
+        100%  { color: #6a1b9a; }
+      }
+     
+      ion-item-divider {
+        text-align: center;
+      }
+      
+    }

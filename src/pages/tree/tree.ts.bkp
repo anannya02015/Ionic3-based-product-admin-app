@@ -1,0 +1,58 @@
+import { Component,Input,Directive,OnInit} from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { __GAAL_WEBPACK_DAAK_BAIRER_WEBPACK } from '../../providers/restapi-service/restapi-service';
+
+import { AboutPage } from '../about/about';
+import { ContactPage } from '../contact/contact';
+import {Constant} from '../setting/constants';
+import { TreeModel,NodeEvent,RenamableNode} from 'ng2-tree';
+
+
+
+@Component({
+  selector:'tree_view',
+		// 2 - listent for nodeSelected events and handle them
+	template: `<tree [tree]="tree" (nodeSelected)="logEvent($event)"></tree>`
+  })
+  export class AppTree {
+	public tree: TreeModel = { value: 'Programming languages by programming paradigm',
+    children: [
+      {
+        value: 'Object-oriented programming',
+        children: [
+          {
+            // I am a RenamableNode. Yeah, that's me :)
+            value: <RenamableNode>{
+              name: 'Java',
+              setName(name: string): void {
+                this.name = name;
+              },
+              toString(): string {
+                return this.name;
+              }
+            }
+          },
+          {value: 'C++'},
+          {value: 'C#'}
+        ]
+      },
+      {
+        value: 'Prototype-based programming',
+        loadChildren: (callback) => {
+          setTimeout(() => {
+            callback([
+              {value: 'JavaScript'},
+              {value: 'CoffeeScript'},
+              {value: 'TypeScript'}
+            ]);
+          }, 5000);
+        }
+      }
+    ]
+  };
+   
+	// 3 - print caught event to the console
+	public logEvent(e: NodeEvent): void {
+	  console.log('EVENT LOG'+e);
+	}
+  }

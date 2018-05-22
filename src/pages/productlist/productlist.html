@@ -1,0 +1,142 @@
+
+<ion-header>
+   
+    <ion-navbar >
+   
+            <button ion-button menuToggle>
+                    <ion-icon name="menu"></ion-icon>
+            </button>
+                  <ion-title>{{ 'product_list' | translate }}</ion-title>
+
+      
+        
+      <ion-buttons end>
+                   <!-- <button item-end ion-button  Solid  (click)="addProduct()" color="color4" round>{{ 'ADD_PRODUCT' | translate }}</button>  
+                   -->
+                    <button ion-button  (click)="addProduct(catid)">
+                        <ion-icon name="add-circle"></ion-icon>   {{ 'ADD_PRODUCT' | translate }}
+                      </button>
+        </ion-buttons>  
+       
+       
+
+    
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content>
+        <ion-card>
+        <ion-item>
+                <ion-label ><b> {{ category.bcform}} </b></ion-label>
+                
+              </ion-item>
+            </ion-card>
+            <ion-card>
+            <button  ion-button  round small (click)="addProduct(catid)" color="ycBlue">
+        <ion-icon name="add-circle"></ion-icon>   {{ 'ADD_PRODUCT' | translate }}
+      </button>
+      <button ion-button round small (click)="_barri_CHOLEJA_()" color="ycBlue">
+            <ion-icon name="home"></ion-icon> Home   
+          </button>
+        </ion-card>
+        
+        <ion-card>
+                
+            </ion-card>
+            <ion-card>
+                
+            </ion-card>
+            <ion-card>
+                
+            </ion-card>
+            <ion-card>
+                
+            </ion-card>
+            <ion-card>                
+            </ion-card>
+        <ion-card>
+
+    <ion-row color="ycBlue" class="row_header2">
+                      
+              <ion-col col-2>
+              
+              </ion-col >
+              <ion-col col-2>
+                {{ 'prod_name' | translate }}
+                  
+              </ion-col >
+              <ion-col col-2>
+                {{ 'prod_latest_price' | translate }} 
+              </ion-col>
+              <ion-col col-2>
+                  Stock
+              </ion-col>
+              <ion-col col-2>
+                  alert
+              </ion-col>
+              <ion-col col-2>
+                    
+                </ion-col>
+              
+             
+        
+            </ion-row>
+      
+        </ion-card>
+        <ion-card></ion-card>
+        <ion-card></ion-card>
+            
+
+
+            <ion-card>
+          <ion-row *ngFor="let product of productlist"   (click)="itemTapped($event, product._id)"   >
+              
+            <ion-col col-2>
+                <ion-thumbnail item-left>
+
+                     <img src="{{product.thumb}}"/> 
+
+
+                </ion-thumbnail>
+            </ion-col>
+            <ion-col col-2>
+                <h2>{{product.name}}</h2>
+            </ion-col >
+            
+            
+                <ion-col  col-2 *ngFor="let price of product.prices | keys:1:'price_revised'">
+                {{price.price_revised}}
+                </ion-col>
+            <!--
+            <ion-col  col-2>
+                    500
+               </ion-col>
+            -->
+        <ion-col  *ngFor="let stock of product.stock | keys:1:'total,alert'">
+            <ion-col  col-2>
+                 {{stock.total}}
+            </ion-col>
+            <ion-col col-2>
+                     {{stock.alert}}
+            </ion-col>
+        </ion-col>
+        <ion-col col-2>
+                
+            </ion-col>
+            <!--
+        <ion-col col-2>
+                
+                    <button  ion-button block   (click)="itemTapped($event, product.id)"  color="ycBlue" round><img width="35" height="35" src="../assets/image/pencil_edit2.jpg"  /> </button>
+                
+                
+            </ion-col>
+        -->
+          
+          </ion-row>
+        </ion-card>   
+        
+      
+    
+
+</ion-content>

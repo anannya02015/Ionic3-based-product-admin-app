@@ -1,0 +1,412 @@
+
+
+
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>  {{ 'add_edit_product' | translate }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+ 
+
+<ion-content padding>
+  <ion-card>
+  <ion-item>
+    <button ion-button round small (click)="close()" color="ycBlue">
+      <ion-icon name="arrow-round-back"></ion-icon> Back   
+    </button>
+
+    <button ion-button round small (click)="_barri_CHOLEJA_()" color="ycBlue">
+      <ion-icon name="home"></ion-icon> Home   
+    </button>
+  
+    </ion-item>
+    
+  </ion-card>
+    <div padding>
+        <ion-segment [(ngModel)]="segment"  >
+          
+          <ion-segment-button value="basic_info">
+              <ion-icon name="information-circle"> </ion-icon>   {{ 'prod_basic' | translate }}
+          </ion-segment-button>
+          <ion-segment-button value="image" disabled="{{disableOthersegmentbutton}}">
+              <ion-icon name="images"> </ion-icon>  {{ 'prod_image' | translate }}
+          </ion-segment-button>
+        </ion-segment>
+
+        <ion-segment [(ngModel)]="segment"  >
+          <ion-segment-button value="Offer" disabled="{{disableOthersegmentbutton}}">
+              {{ 'prod_special_offer' | translate }}
+          </ion-segment-button>
+          
+        
+          <ion-segment-button value="color_size" disabled="{{disableOthersegmentbutton}}">
+              <ion-icon name="color-palette"> </ion-icon>   {{ 'prod_variant' | translate }}
+          </ion-segment-button>
+          
+        
+          
+          </ion-segment>
+      </div>
+ 
+      <form [formGroup]="productForm"  >
+
+          <ion-card>
+              <ion-item>
+                      <ion-label ><b> {{ category.bcform}} </b></ion-label>
+                      
+                    </ion-item>
+                  </ion-card>
+                  
+      <div [ngSwitch]="segment">
+        <ion-list *ngSwitchCase="'basic_info'">
+            <ion-item>
+                
+                 
+                 
+                      <ion-icon name="information-circle">  All </ion-icon> <ion-icon name="star"></ion-icon> marked fields are mandatory
+                    </ion-item>
+            <!-- <form [formGroup]="productForm"  > -->
+
+                <!-- <button ion-button  block (click)="addproduct()" color="secondary" small >Add product</button> -->
+                
+                 <!--   
+                
+              <ion-item float-right>
+                <button ion-button  small (click)="saveProduct()" color="ycBlue" round >Save</button>
+              </ion-item>
+              
+            -->
+                
+            
+                <ion-card>
+                    
+                
+            
+              <ion-item>
+                <ion-label > <b>{{ 'prod_name' | translate }} <ion-icon name="star"></ion-icon></b></ion-label>
+
+                <ion-input autofocus type="text" formControlName="name" [(ngModel)]="product.name" ></ion-input>
+              </ion-item>
+              
+              <ion-item  *ngIf="!productForm.controls.name.valid && productForm.controls.name.errors.minlength && productForm.controls.name.dirty ">
+                <ion-label color="danger">Name must be at least {{productnamelengthmin}} characters long.</ion-label>
+              </ion-item>
+            
+              <ion-item *ngIf="!productForm.controls.name.valid && productForm.controls.name.errors.required && productForm.controls.name.dirty  ">
+                <ion-label color="danger">Name is required.</ion-label>
+              </ion-item>
+              <ion-item  *ngIf="!productForm.controls.name.valid && productForm.controls.name.errors.maxlength && productForm.controls.name.dirty ">
+                <ion-label color="danger">Name can be maximum of {{productnamelengthmax}} characters long.</ion-label>
+              </ion-item>
+           
+            <ion-item>
+                <ion-label > <b>{{ 'prod_active' | translate }} </b></ion-label>
+             
+                <ion-toggle formControlName="prod_active"  [(ngModel)]="product.prod_active" ></ion-toggle>
+              </ion-item>
+           
+            </ion-card>
+            <ion-card>
+              <ion-item-divider  color="itemheader">{{ 'prod_price' | translate }}                                </ion-item-divider>
+              <ion-item>
+                <ion-label > <b> {{ 'prod_price_original' | translate }} </b></ion-label>
+                <ion-input type="text" formControlName="price_original" [(ngModel)]="product.prices.price_original" ></ion-input>
+                
+              </ion-item>
+                            
+              <ion-item>
+                <ion-label ><b> {{ 'prod_price_revise' | translate }} </b></ion-label>
+                <ion-input type="text" formControlName="price_revised" [(ngModel)]="product.prices.price_revised" ></ion-input>
+              
+              </ion-item>
+            </ion-card>
+          <ion-card>
+              <ion-item-divider color="itemheader">{{ 'prod_stock' | translate }}                                </ion-item-divider>
+              <ion-item>
+                <ion-label ><b> {{ 'prod_availavle_stock' | translate }} </b></ion-label>
+                <ion-input type="text" formControlName="total_stock" [(ngModel)]="product.stock.total" ></ion-input>
+                
+              </ion-item>
+                            
+              <ion-item>
+                <ion-label > {{ 'prod_stock_alert' | translate }}     </ion-label>
+            
+                
+                <ion-input type="text" formControlName="alert_stock" [(ngModel)]="product.stock.alert" ></ion-input>
+               
+                <button ion-button item-end (click)="whatisThisAlert('Notification will be sent when the available stock becomes less than or equals to this value')">(what is this?)</button>
+
+              </ion-item>
+              
+            </ion-card>
+          <ion-card>
+              <ion-item-divider color="itemheader">{{ 'prod_desc' | translate }}                                </ion-item-divider>
+                <ion-label >{{ 'prod_short_desc' | translate }} </ion-label>
+                <rich-text [formControlItem]="prod_short_desc_item"   ></rich-text>
+              
+                <!-- <div padding [innerHTML]="prod_short_desc_item.value"></div> -->
+                
+                <ion-label >{{ 'prod_long_desc' | translate }} </ion-label>
+                
+                <rich-text [formControlItem]="prod_long_desc_item"  ></rich-text>
+              
+               <!-- <div padding [innerHTML]="prod_long_desc_item.value"></div> -->
+              </ion-card>
+          
+              <p *ngIf="submitAttempt" color="danger" ><ion-icon name="alert"></ion-icon>{{ 'form_fill_failure_msg' | translate }}</p>
+
+              <button ion-button  small (click)="_tywssssSooitybP__()" color="ycBlue" round >Save</button>
+
+              <button ion-button small *ngIf="shoSaveNextButton" (click)="saveAndGONext()" color="ycBlue" round>Save and Next</button>
+
+          <!--  </form> -->
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'image'">
+            <button ion-button round small color="ycBlue" (click)="__trepoi___(product._id)">
+                <ion-icon name="add-circle"> </ion-icon>    {{ 'ADD_IMAGE' | translate }}
+              </button>
+
+              <div>
+                <ion-card>
+                        
+                    </ion-card>
+                    <ion-card>
+                        
+                    </ion-card>
+                   
+                
+                    <ion-card>
+            <ion-row color="ycBlue" class="row_header2">
+                              
+                      
+                      <ion-col col-4>
+                        {{ 'prod_thumname' | translate }}
+                          
+                      </ion-col >
+                      <ion-col col-4>
+                        {{ 'default_image' | translate }} 
+                      </ion-col>                      
+                     
+                      
+                      <ion-col col-4>
+                        {{ 'delete_button' | translate }} 
+                      </ion-col>                      
+                     
+                      
+                
+                      
+                    </ion-row>             
+                  </ion-card>
+                    <ion-card>
+                      
+                  </ion-card>
+                  <ion-card>
+                    
+                </ion-card>
+                <ion-card>
+                  
+              </ion-card>
+                   
+        
+        
+                    
+                  <ion-row *ngFor="let _drom_ of _droomyL_"   (click)="itemTapped($event, _drom_._id)"   >
+                    <ion-card>
+                      
+                  </ion-card>
+                  <ion-card>
+                    
+                </ion-card>
+                    <ion-col col-4>
+                      
+                              <img  height="200" width="200" src="{{_drom_._jfjfjf_}}"/> 
+                      
+                    </ion-col>
+                    <ion-col col-4>
+                        {{_drom_.default}}
+                    </ion-col >
+                    <ion-col col-4>
+                    <button ion-button color="ycBlue" (click)="_doly666_(_drom_._id,_drom_.default)">
+                      <ion-icon name="trash"> </ion-icon>   
+                    </button>
+                  </ion-col >
+              
+                  <ion-input type="text" formControlName="alert_stock" [(ngModel)]="product.stock.alert" ></ion-input>
+                    
+                  </ion-row>
+                
+              </div>
+       </ion-list>
+
+       <ion-list *ngSwitchCase="'Offer'">
+          <h2>Footwear</h2>
+        </ion-list>
+        <ion-list *ngSwitchCase="'color_size'">
+
+            <ion-card>
+                
+            </ion-card>
+            <ion-card>
+                
+            </ion-card>
+        
+        <ion-card>
+
+    <ion-row color="ycBlue" class="row_header2">
+              
+              <ion-col col-3>
+                {{ 'color' | translate }}
+                  
+              </ion-col >
+              <ion-col col-5>
+                {{ 'price_changed' | translate }} 
+              </ion-col>
+              <ion-col col-4>
+                  {{ 'project_settings' | translate }} 
+              </ion-col>
+             
+              
+             
+        
+            </ion-row>
+      
+        </ion-card>
+        <ion-card></ion-card>
+        <ion-card></ion-card>
+            <ion-card>
+                <ion-row *ngFor="let gomramuk of __domidoomsBanano__"   (click)="itemTapped($event, gomramuk._id)"   >
+                    
+                  <ion-col col-3>
+                      <!-- <button ion-button small color="{{gomramuk.colr}}"></button>
+                      -->
+                      <input  disabled type="color"  value="{{gomramuk.colr}}" >
+                  </ion-col>
+                  <ion-col col-5>
+                      <h2>{{gomramuk.desc}}</h2>
+                  </ion-col >
+                  
+                  
+                    
+              <ion-col col-4>
+                <ion-item>
+                  <button item-start ion-button color="ycBlue" >
+                      <ion-icon name="settings"> </ion-icon> 
+                    </button>
+                  
+                  <ion-select item-end  (ionChange)="onSelectChange($event,gomramuk._id)">
+                      <ion-option value="edit">Edit</ion-option>
+                      <ion-option value="delete">Delete</ion-option>                                              
+                    </ion-select>
+                  </ion-item>
+                  </ion-col>
+                
+                  <!--
+              <ion-col col-2>
+                      
+                          <button  ion-button block   (click)="itemTapped($event, product.id)"  color="ycBlue" round><img width="35" height="35" src="../assets/image/pencil_edit2.jpg"  /> </button>
+                      
+                      
+                  </ion-col>
+              -->
+                
+                </ion-row>
+              </ion-card>   
+              
+            
+          
+          
+          <ion-card>
+           
+            
+
+           
+
+        <!--    <form [formGroup]="_colFm"  > -->
+
+               
+
+                <div formArrayName="items"
+                *ngFor="let item of productForm.get('items').controls; let i = index;">
+                <div [formGroupName]="i">
+                   
+                    <ion-item>
+                        <ion-label  > 
+                         <b>   {{ 'chose_a_color_to_product' | translate }} </b>
+                            
+                          </ion-label>
+                        </ion-item>
+                        <ion-item>
+                  <input   type="color" id="myColor" formControlName="colr"  value="{{colr}}" select="__ciuytffpp__($event)">
+                </ion-item>
+                        <ion-item>
+                            <ion-label > 
+                                <b>    {{ 'price_change_on_color' | translate }} </b>
+                            </ion-label>
+                          </ion-item>
+                          <ion-item>
+                        <ion-select formControlName="change_in_price" >
+                          <ion-option value="increase">Increase </ion-option>                          
+                          <ion-option value="decrease">Decrease </ion-option>
+                          <ion-option value="default" >Default</ion-option>
+                        </ion-select>
+                      </ion-item>
+                      
+                      <ion-item>
+                          <ion-label > 
+                              <b>   {{ 'price_change_on_color_amount_percent' | translate }} </b>
+                          </ion-label>
+                        </ion-item>
+                        <ion-item>
+                      <ion-select formControlName="amount_pecnt" >
+                        <ion-option value="amount">By Amount</ion-option>
+                        <ion-option value="percent">By Percent</ion-option>                        
+                        <ion-option value="default"   >Default</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+                      <ion-item>
+                        <ion-label  *ngIf="(productForm.controls.items.controls[i].controls.amount_pecnt.value == 'amount') || (productForm.controls.items.controls[i].controls.amount_pecnt.value == 'default') "><b>  {{ 'amount' | translate }} </b></ion-label> <ion-label  *ngIf="(productForm.controls.items.controls[i].controls.amount_pecnt.value == 'percent') " > % </ion-label>
+                      </ion-item>
+                      <ion-item>
+                        <ion-input type="text" formControlName="price_increase"  ></ion-input>
+                       
+                      </ion-item>
+             </div>
+             
+            
+        
+        <!--  Chosen name: {{ productForm.controls.items.controls[i].controls.colr.value }}  -->
+        
+        </div>
+        <ion-item>
+            <ion-label >   </ion-label>  
+            <button item-end round small ion-button color="ycBlue" (click)="__aayyytrdsahdC___()">
+                <ion-icon name="add-cicle"> </ion-icon>   Add more color
+              </button>
+          </ion-item>
+
+        <button ion-button round small color="ycBlue" (click)="_colouiuSSSSS()">
+            <ion-icon name="add-cicle"> </ion-icon>   Save Product Color
+          </button>
+          
+          
+
+          </ion-card>
+          </ion-list>
+      </div>
+
+    </form> 
+  
+</ion-content>
+
+    
+<ion-footer>
+    <ion-tabs>
+        
+      </ion-tabs>
+  </ion-footer>

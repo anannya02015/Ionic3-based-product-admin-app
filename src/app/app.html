@@ -1,0 +1,64 @@
+<ion-menu [content]="content">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Menu</ion-title>
+          </ion-toolbar>
+        </ion-header>
+      <!--
+        <ion-content>
+          <ion-list>
+            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+              {{p.title}}
+            </button>
+          </ion-list>
+        </ion-content>
+      -->
+
+     
+
+       
+      
+      <ion-content>
+          <button ion-item  menu-close (click)="openCatPage('main',0)">
+              <ion-icon name="link" item-left></ion-icon> {{ 'ADD_MAIN_CAT' | translate }}
+           </button>
+
+         
+    
+          <ion-item-divider color="ycBlue">{{ 'EXISTING_CAT_TREE' | translate }}</ion-item-divider>
+
+          <ion-item item-left><tree [tree]="tree" (nodeSelected)="logEvent($event)" #treeComponent (nodeCollapsed)="handleCollapsed($event)" (nodeExpanded)="handleExpanded($event)"></tree> </ion-item>
+    
+          <ion-item-divider color="ycBlue">{{ 'project_settings' | translate }}</ion-item-divider>  
+        
+        <div style = "color : #3DBCC0; width:100%; height : 100%">
+         <ion-list no-lines>
+     
+           <!--<button menuClose ion-item *ngFor="let p of myPages" (click)="openPage(p)">
+             <span text-color="my-custom-color2">{{p.title}}</span>
+           </button>-->
+     
+
+           <button ion-item  menu-close (click)="openLanguageSelectionPage()">
+            <ion-icon name="globe" item-left></ion-icon> {{ 'project_language' | translate }}
+         </button>
+
+            <button ion-item  menu-close (click)="openHomePae()">
+               <ion-icon name="cash" item-left></ion-icon> Currency
+            </button>
+     
+            <button ion-item>
+               <ion-icon name="home" item-left></ion-icon> SIGN OUT
+            </button>
+
+     
+         </ion-list>
+       </div>
+       </ion-content>
+      </ion-menu>
+
+      
+   
+      <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+      <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+

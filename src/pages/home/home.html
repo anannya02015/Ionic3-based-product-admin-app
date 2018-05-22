@@ -1,0 +1,41 @@
+
+
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Home</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+    
+        <ion-card-header>
+            User List
+        </ion-card-header>
+  
+  
+    
+    <ion-item *ngFor="let user of users">
+      
+        <ion-card>
+      <button ion-item>
+          <ion-icon name="{user.name}" item-start></ion-icon>
+          Name <h2 >{{user.name}}</h2>
+          Email <h3>{{user.seller_email}}</h3>
+                   
+        </button>
+      </ion-card>
+    </ion-item>
+  
+
+
+  
+</ion-content>
+
+<ion-footer>
+    <ion-tabs>
+        
+      </ion-tabs>
+  </ion-footer>

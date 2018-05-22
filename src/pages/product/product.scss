@@ -1,0 +1,42 @@
+
+
+ion-segment-button{
+  //max-width: 25px;
+  color: #e62100;
+  border-style: solid;
+}
+
+.segment-button {
+  border-style: none;
+  border-color: #e62100;
+  color: #e62100;
+  border-width: thin;
+}
+
+.segment-button:first-of-type {
+  border-radius: 90px 90px 90px 90px;
+  // margin-right: 0px;
+  margin-left: 0px;
+  line-height: 3.4rem;
+  height: 100%;
+  width: 100%}
+.segment-button:not(:first-of-type) {
+  border-radius: 90px 90px 90px 90px;
+ // margin-right: 0px;
+  margin-left: 20px;
+  line-height: 3.4rem;
+  height: 100%;
+  width: 100%;}
+.segment-button:last-of-type {
+  border-radius: 90px 90px 90px 90px;
+  margin-right: 0px;
+  margin-left: 20px;
+  line-height: 3.4rem;
+  height: 100%;
+  width: 100%;}
+
+
+ .segment-activated{
+  background-color: #bd402d;
+  color: #ac5050;
+}

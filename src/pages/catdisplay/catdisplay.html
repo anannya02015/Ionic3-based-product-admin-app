@@ -1,0 +1,54 @@
+<ion-header>
+<ion-navbar>
+  <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Category Listing</ion-title>
+</ion-navbar>
+
+
+</ion-header>
+<!--
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+-->
+
+
+
+ 
+
+<ion-content>
+  
+   
+    <button ion-item  menu-close (click)="openCatPage('main',0)">
+        <ion-icon name="link" item-left></ion-icon>{{ 'ADD_MAIN_CAT' | translate }}
+     </button>
+
+
+    <ion-item-divider color="ycBlue">{{ 'EXISTING_CAT_TREE' | translate }}</ion-item-divider>
+
+    <ion-item item-left><tree [tree]="tree" (nodeSelected)="logEvent($event)" #treeComponent (nodeCollapsed)="handleCollapsed($event)" (nodeExpanded)="handleExpanded($event)"></tree> </ion-item>
+
+    
+    
+        <!-- div padding [innerHTML]="item.value"></div -->
+    
+    
+  
+
+       
+ </ion-content>
+<ion-footer>
+ <ion-tabs selectedIndex="2">
+    <ion-tab [root]="tab1Root"></ion-tab>
+    <ion-tab [root]="tab2Root"></ion-tab>
+    <ion-tab [root]="tab3Root"></ion-tab>
+  </ion-tabs>
+
+</ion-footer>
+

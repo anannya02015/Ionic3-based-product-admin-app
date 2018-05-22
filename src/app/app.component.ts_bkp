@@ -1,0 +1,149 @@
+import { Component,ViewChild } from '@angular/core';
+import { Platform,Nav,MenuController } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { TabsPage } from '../pages/tabs/tabs';
+import { AboutPage } from '../pages/about/about';
+import { ContactPage } from '../pages/contact/contact';
+import { HomePage } from '../pages/home/home';
+import { AppTree } from '../pages/tree/tree';
+import { ProductlistPage } from '../pages/productlist/productlist';
+import { TreeModel,NodeEvent,RenamableNode} from 'ng2-tree';
+
+import { TreeModule } from 'angular-tree-component';
+@Component({
+  selector:'tree_view',
+  templateUrl: 'app.html'
+})
+
+
+export class MyApp {
+
+  @ViewChild(Nav) nav: Nav;
+  pages: Array<{title: string, component: any}>;
+    //rootPage: any = HomePage;
+  rootPage:any = HomePage;
+
+  
+  homepage=HomePage;
+   
+public tree: TreeModel = 
+{
+  id: 0,
+  value: 'Category',
+  children: [    {        value: 'Category1',        id: '1',        loadChildren: (callback) => {      setTimeout(() => {         callback([{value:'text10',id:'10'},{value:'text11',id:'11'},{value:'text12',id:'12',loadChildren:(callback) => {      setTimeout(() => {         callback([{value:'text5',id:'5'},{value:'text6',id:'6'}]);        }, 1000);      }}]);        }, 1000);      }    },    {        value: 'Category2',        id: '2',        loadChildren: (callback) => {      setTimeout(() => {         callback([{value:'text20',id:'20'},{value:'text21',id:'21'}]);        }, 1000);      }    },    {        value: 'Category3',        id: '3',        loadChildren: (callback) => {      setTimeout(() => {         callback([{value:'text30',id:'30'},{value:'text31',id:'31'}]);        }, 1000);      }    }]
+}
+
+@ViewChild('treeComponent') treeComponent;
+	public tree1: TreeModel = {
+    id: '0',
+     value: 'Programming languages by programming paradigm',
+  children: [
+    {
+      id: '1',
+      value: 'Object-oriented programming',
+      children: [
+        {
+          id: '2',
+          // I am a RenamableNode. Yeah, that's me :)
+          value: <RenamableNode>{
+            name: 'Java',
+            setName(name: string): void {
+              this.name = name;
+            },
+            toString(): string {
+              return this.name;
+            }
+          }
+        },
+        {id: '3',value: 'C++'},
+        {id: '4',value: 'C#'}
+      ]
+    },
+    {
+      id: '5',
+      value: 'Prototype-based programming',
+      loadChildren: (callback) => {
+        setTimeout(() => {
+          callback([
+            {id: '6',value: 'JavaScript'},
+            {value: 'CoffeeScript'},
+            {value: 'TypeScript'}
+          ]);
+        }, 5000);
+      }
+    }
+  ]
+}
+public menu;
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,menu: MenuController) {
+    platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      statusBar.styleDefault();
+      splashScreen.hide();
+    });
+    this.menu=menu
+
+    
+    this.pages = [
+      { title: 'Home', component: HomePage },
+      { title: 'About', component: AboutPage },
+      { title: 'Product', component: ProductlistPage },
+      { title: 'Tree', component: AppTree }
+    ];
+  }
+  openPage(page) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.nav.push(page.component);
+  }
+  openHomePae() {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    
+    this.nav.push(AboutPage);
+    this.menu.close();
+  }
+
+  	// 3 - print caught event to the console
+	public logEvent(e: NodeEvent): void {
+    console.log('EVENT LOG'+e);
+    
+    console.log('===='+e.node.id);
+  }
+  
+  public handleCollapsed(e: NodeEvent): void {
+    console.log('EVENT LOG'+e);
+    
+    console.log('===='+e.node.id);
+  }
+
+   
+last_id:any
+
+oopNodeController:any;// = this.treeComponent.getControllerByNodeId(this.last_id);
+  public handleExpanded(e: NodeEvent): void {
+    console.log('EVENT LOG'+e);
+
+
+if(this.last_id){   
+this.oopNodeController = this.treeComponent.getControllerByNodeId(this.last_id);
+this.oopNodeController.collapse();
+  }
+
+  
+
+this.last_id = e.node.id
+
+//this.oopNodeController = this.treeComponent.getControllerByNodeId(this.last_id);
+
+//this.oopNodeController.select();
+    console.log('===='+e.node.id);
+  }
+
+
+  
+  
+}

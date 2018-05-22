@@ -1,0 +1,11 @@
+{
+  "HELLO": "Hello from Ionic in HINDI",
+  "I18N_EXAMPLE": "i18n example in HINDI",
+  "STRING_WITH_PARAMS": "String with a parameter: {{value}} in HINDI",
+  "INNER_CONTENT": "Inner content with a param: {{value}} in HINDI",
+  "ADD_PRODUCT":"Add product under this Category in HINDI",
+  "GO_BACK":"Go Back in HINDI",
+  "ADD_MAIN_CAT" :"Add Main Category in HINDI",
+"EXISTING_CAT_TREE":"Existing Category Tree IN hindi",
+"ADD_PRODUCT_FOR_THIS_CATEGORY":"Display/Add Product for this Category "
+}

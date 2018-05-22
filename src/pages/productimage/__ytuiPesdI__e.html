@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ 'prod_images_spcify' | translate }}
+    </ion-title>
+    <ion-buttons end>
+      <!-- <button item-end ion-button  Solid  (click)="addProduct()" color="color4" round>{{ 'ADD_PRODUCT' | translate }}</button>  
+      -->
+       <button ion-button  (click)="close()">
+           <ion-icon name="close"></ion-icon>   
+         </button>
+</ion-buttons>  
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ 
+ 
+    <ion-item>
+      <button *ngIf="whenfileselected" color="ycBlue" ion-button block (click)="uploadFile()" >Save</button>
+    </ion-item>
+
+  
+
+  <ion-card>
+      <ion-item>
+      <label class="custom-file-upload">
+        <input id="inputImage" type="file" accept="image/*" (change)="__krkrkrkopueeeee_($event)" multiple />
+        
+    </label>
+  </ion-item>
+  </ion-card>
+ 
+  
+ 
+     
+    <!--
+       
+     <b *ngIf="showTitle"> {{ 'prod_images_original' | translate }}</b>
+     <div *ngFor="let item of processedImages">
+       <img src="{{item.imageDataUrl}}" height="100" width="100">
+       <br>
+     </div>
+    -->
+<ion-card></ion-card>
+<ion-card></ion-card>
+<ion-card></ion-card>
+<ion-card></ion-card>
+<ion-card></ion-card>
+<ion-card>
+     <ion-row *ngIf="whenfileselected" color="ycBlue" class="row_header2">
+      
+              <ion-col col-6>
+              {{ 'prod_thumname' | translate }}
+                
+              </ion-col >
+              <ion-col col-6>
+              {{ 'default_image' | translate }} 
+              </ion-col>                      
+
+
+    </ion-row>
+    <ion-card></ion-card>
+    <ion-card></ion-card>
+    <ion-list radio-group>
+    <ion-row *ngFor="let item of processedImages"   >     
+      <ion-col col-6> <img  src="{{item.imageDataUrl}}" height="100" width="80"></ion-col>
+      <ion-col col-6>
+        <!--[checked]="idx === 0" 
+          <input type="radio" name="radiogroup"   id="def"             
+              [value]="item.compressedImage.fileName" 
+              
+              (change)="onSelectionChange(item.compressedImage.fileName)">
+        -->
+          <!--
+        <ion-radio  id="{{item.compressedImage.fileName}}" 
+        [value]="item.compressedImage.fileName" 
+        checked=" {{radioCheckValue}} && itemName=={{item.compressedImage.fileName}}"
+       
+        (click)="onSelectionChange(item.compressedImage.fileName)"></ion-radio>
+          -->
+
+          <button id="{{item.compressedImage.fileName}}"
+          color="ycBlue" ion-button small round 
+          (click)="onSelectionChange(item.compressedImage.fileName)"
+           >Make default</button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+     <ion-item>
+      <button *ngIf="whenfileselected" color="ycBlue" ion-button block (click)="uploadFile()" >Save</button>
+    </ion-item>
+
+  <!--
+     <b *ngIf="showTitle" >Compressed Image List</b>
+     <div *ngFor="let item of processedImages">
+       <img src="{{item.compressedImage.imageDataUrl}}" height="800" width="1000">
+     </div> 
+    -->
+   
+  </ion-card>
+</ion-content>

@@ -1,0 +1,53 @@
+
+
+
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>About</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+  <h2>Add User</h2>
+  <form [formGroup]="loginForm"  >
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <!-- && (loginForm.controls.name.dirty ) -->
+      <ion-input type="text" formControlName="name" [(ngModel)]="user.name" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!loginForm.controls.name.valid && loginForm.controls.name.dirty ">
+      <p>Please enter a valid name.</p>
+  </ion-item>
+  <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text"  name="seller_active"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" name="seller_email"></ion-input>
+    </ion-item>
+  
+   <!-- <ion-item>
+      <ion-label>Website</ion-label>
+      <ion-input type="url" name="website"></ion-input>
+    </ion-item>
+  -->
+    
+    <ion-item-divider color="light">Company</ion-item-divider>
+    
+    
+    <p *ngIf="submitAttempt" style="color: #EA7153;">Please fill out all details accurately.</p>
+  </form>
+</ion-content>
+<button ion-button  block (click)="saveUser()" color="secondary" small >Add Sub Category</button>
+    <button ion-button  block (click)="saveProduct()" color="secondary" small>Add Product</button>
+    
+<ion-footer>
+    <ion-tabs>
+        
+      </ion-tabs>
+  </ion-footer>

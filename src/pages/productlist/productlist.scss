@@ -1,0 +1,42 @@
+
+    ion-row:nth-of-type(even) {
+   
+          background:color($colors, itemheader);
+   
+      }
+
+      scroll-content {
+        display: flex;
+        flex-direction: column;
+    }
+ 
+    ion-grid {
+        padding: 0;
+        height: 100%;
+    }
+ 
+    ion-row {
+        flex: 1;
+    }
+    .fixed_header {
+        background-color: rgb(28, 182, 61);
+        border: 1px solid #7E103E;
+        color:white;
+        font-weight: bold;
+        margin: 0;
+        font-size: 1.1em;
+        position: fixed;
+        width:100%;
+    }
+
+    .row_header2
+    {
+        background-color: rgb(28, 182, 61);
+        border: 1px solid #7E103E;
+        color:white;
+        font-weight: bold;
+        margin: 0;
+        font-size: 1.1em;
+   //     position: fixed;
+        width:100%;
+    }

@@ -1,0 +1,89 @@
+
+
+
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>  {{ 'ADD_category' | translate }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  
+
+<ion-content padding>
+  
+
+  <form [formGroup]="catsubForm"  >
+ 
+    
+      <ion-icon name="information-circle">  All </ion-icon> <ion-icon name="star"></ion-icon> marked fields are mandatory
+
+      <ion-card>
+    <ion-item>
+        
+      <ion-label >{{ 'prod_name' | translate }} <ion-icon name="star"></ion-icon></ion-label>
+      <!-- && (loginForm.controls.name.dirty ) -->
+      <ion-input type="text" formControlName="name"  [(ngModel)]="category.value"  ></ion-input>
+      <!-- (ngModelChange)="onChange(category.value)" -->
+      
+    </ion-item>
+  </ion-card>
+    <!--
+    <ion-item *ngIf="!catsubForm.controls.name.valid && catsubForm.controls.name.dirty ">
+      <ion-label color="danger">Please enter a valid name.</ion-label>
+  </ion-item>
+-->
+  <ion-item  *ngIf="!catsubForm.controls.name.valid && catsubForm.controls.name.errors.minlength && catsubForm.controls.name.dirty ">
+    <ion-label color="danger">Name must be at least {{categorynamelengthmin}} characters long.</ion-label>
+  </ion-item>
+
+  <ion-item  *ngIf="!catsubForm.controls.name.valid && catsubForm.controls.name.errors.maxlength && catsubForm.controls.name.dirty ">
+    <ion-label color="danger">Name can be of maximum {{categorynamelengthmax}} characters long.</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="!catsubForm.controls.name.valid && catsubForm.controls.name.errors.required && catsubForm.controls.name.dirty  ">
+    <ion-label color="danger">Name is required.</ion-label>
+  </ion-item>
+  <ion-card>
+  <ion-item>
+    
+      <ion-label >Active</ion-label>
+   
+      <ion-toggle formControlName="seller_active"  [(ngModel)]="category.seller_active" ></ion-toggle>
+    </ion-item>
+  </ion-card>
+<ion-card>
+    <ion-item>
+      <ion-label >Description</ion-label>
+      <ion-textarea formControlName="desc" [(ngModel)]="category.desc"></ion-textarea>
+    </ion-item>
+ </ion-card> 
+  
+    
+    <p *ngIf="submitAttempt" color="danger" ><ion-icon name="alert"></ion-icon> {{ 'form_fill_failure_msg' | translate }}</p>
+
+    <ion-item>
+    <button ion-button  block (click)="savecategory()" color="ycBlue" round >Save</button>
+  </ion-item>
+  </form>
+
+  <ion-item  item-end>
+      <!-- <button ion-button  block (click)="addcategory()" color="secondary" small >Add Category</button> -->
+      <button ion-button block *ngIf="showAddSubcategoryButton" (click)="addsubcategory(category.id)" color="ycBlue" round>Add Sub Category</button>
+    </ion-item>
+      <ion-item>
+      <button  ion-button block  *ngIf="showAddSubcategoryButton" (click)="openProduct(category.id)" color="ycBlue" round>{{ 'ADD_PRODUCT_FOR_THIS_CATEGORY' | translate }}</button>
+      
+
+      
+    </ion-item>
+</ion-content>
+
+    
+<ion-footer>
+    <ion-tabs>
+        
+      </ion-tabs>
+  </ion-footer>
